@@ -6,7 +6,7 @@
   let us;
 
   // Fetch the JSON data
-  fetch('path/to/counties-albers-10m.json')
+  fetch('static/states-albers-10m.json')
     .then(response => response.json())
     .then(data => {
       us = data;
