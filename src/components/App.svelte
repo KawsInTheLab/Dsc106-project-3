@@ -4,6 +4,7 @@
   import worldData from "./world.json";
 
   let happinessData;
+  let colorScale;
 
   onMount(async () => {
     const response = await fetch("./2022.csv");
@@ -11,6 +12,9 @@
     happinessData = d3.csvParse(csvData, d => {
       return { country: d.Country, happinessScore: +d.HappinessScore, rank: d.RANK };
     });
+    colorScale = d3.scaleSequential()
+      .domain(d3.extent(happinessData, d => d.happinessScore))
+      .interpolator(d3.interpolateHsl("red", "yellow"));
     renderGlobe(worldData, happinessData);
   });
 
@@ -84,7 +88,7 @@
     // Create a legend
     const legend = svg.append("g")
       .attr("class", "legend")
-      .attr("transform", `translate(${width - 400}, 50)`);  // Position the legend
+      .attr("transform", `translate(${width - 300}, 50)`);  // Position the legend
 
     const legendAxis = d3.axisRight(legendScale)
       .tickValues([d3.min(happinessData, d => d.happinessScore), d3.max(happinessData, d => d.happinessScore)])
@@ -140,8 +144,65 @@
         svg.selectAll("path").attr("d", path);
     }));
   }
+
+  function filterCountries(num) {
+    if (num === null) {
+      // Reset the visualization to show all countries with their respective colors
+      d3.selectAll(".countries path")
+        .attr("fill", d => {
+          const countryData = happinessData.find(h => h.country === d.properties.name);
+          return countryData ? colorScale(countryData.happinessScore) : "#ccc";
+        });
+    } else {
+      // Sort and slice the data to get the top N countries
+      const topCountries = happinessData.sort((a, b) => a.rank - b.rank).slice(0, num);
+      const topCountryNames = new Set(topCountries.map(h => h.country));
+
+      d3.selectAll(".countries path")
+        .attr("fill", d => {
+          return topCountryNames.has(d.properties.name) ? colorScale(happinessData.find(h => h.country === d.properties.name).happinessScore) : "#ccc";
+        });
+    }
+  }
 </script>
 
+<div class="graph-title">
+  <h1>A Happy World</h1>
+</div>
 <div id="map" style="width: 100%;"></div>
 <div id="tooltip" style="position: absolute; visibility: hidden; background-color: white; border: none; padding: 10px; border-radius: 5px; pointer-events: none; font-family: 'Gill Sans', serif; font-size: 14px;"></div>
+
+<div class="filter-container">
+  <h3>Filter Happiest Countries</h3>
+  <div class="button-group">
+    <input type="radio" name="topCountries" id="clear" on:change={() => filterCountries(null)} checked>
+    <label for="clear">Clear</label>
+    <input type="radio" name="topCountries" id="top5" on:change={() => filterCountries(5)}>
+    <label for="top5">Top 5</label>
+    <input type="radio" name="topCountries" id="top10" on:change={() => filterCountries(10)}>
+    <label for="top10">Top 10</label>
+    <input type="radio" name="topCountries" id="top25" on:change={() => filterCountries(25)}>
+    <label for="top25">Top 25</label>
+    <input type="radio" name="topCountries" id="top50" on:change={() => filterCountries(50)}>
+    <label for="top50">Top 50</label>
+  </div>
+</div>
+
+<style>
+  .graph-title h1 {
+    text-align: center;
+    font-family: 'Gill Sans', serif;
+    margin-top: 20px;
+  }
+
+  .filter-container {
+    text-align: center; /* Center align the content */
+    margin-top: 20px; /* Space from the map */
+    font-family: 'Gill Sans', serif; /* Apply Gill Sans font to the filter container */
+  }
+
+  .button-group {
+    margin-top: 10px; /* Space below the header */
+  }
+</style>
 
