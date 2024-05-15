@@ -84,13 +84,28 @@
     // Create a legend
     const legend = svg.append("g")
       .attr("class", "legend")
-      .attr("transform", `translate(${width - 100}, 50)`);  // Position the legend
+      .attr("transform", `translate(${width - 400}, 50)`);  // Position the legend
 
     const legendAxis = d3.axisRight(legendScale)
       .tickValues([d3.min(happinessData, d => d.happinessScore), d3.max(happinessData, d => d.happinessScore)])
-      .tickFormat((d, i) => i === 0 ? "Unhappier" : "Happier");
+      .tickFormat(() => ""); // Return empty strings for the ticks
 
-    legend.call(legendAxis);
+    //legend.call(legendAxis);
+
+    // Manually add "Happier" and "Unhappier" labels
+    legend.append("text")
+      .attr("x", 0) // Adjust x position
+      .attr("y", -10) // Adjust y position for "Happier" (20 pixels higher)
+      .attr("dy", "0.32em")
+      .style("font-family", "'Gill Sans', serif")
+      .text("Happier");
+
+    legend.append("text")
+      .attr("x", 0) // Adjust x position
+      .attr("y", 110) // Adjust y position for "Unhappier" (20 pixels lower)
+      .attr("dy", "0.32em")
+      .style("font-family", "'Gill Sans', serif")
+      .text("Unhappier");
 
     const defs = svg.append("defs");
     const linearGradient = defs.append("linearGradient")
@@ -114,7 +129,7 @@
     // Drag functionality to rotate the globe
     svg.call(d3.drag().on("drag", (event) => {
         let rotate = projection.rotate();
-        let k = 0.8; // Sensitivity factor
+        let k = 0.4; // Sensitivity factor
         let newLongitude = rotate[0] + event.dx * k;
         let newLatitude = rotate[1] - event.dy * k;
 
