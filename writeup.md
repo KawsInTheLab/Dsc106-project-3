@@ -23,7 +23,7 @@ We decided to do a visualization using a map from the beginning, but we weren’
 
 **Samuel**
 - Worked on the data visualization of the globe through working on the legend, the drag effect, implementing the filter and centering the labels. Added some titles as well as other small design tweaks.
-- Added to the writeup with some changes.
+- Added to the writeup with some changes and tweaks.
 - Part of the brainstorming and visualization process.
 
 **Eduardo**
