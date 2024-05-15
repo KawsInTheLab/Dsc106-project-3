@@ -88,7 +88,7 @@
     // Create a legend
     const legend = svg.append("g")
       .attr("class", "legend")
-      .attr("transform", `translate(${width - 300}, 50)`);  // Position the legend
+      .attr("transform", `translate(${width - 350}, 50)`);  // Position the legend
 
     const legendAxis = d3.axisRight(legendScale)
       .tickValues([d3.min(happinessData, d => d.happinessScore), d3.max(happinessData, d => d.happinessScore)])
@@ -185,7 +185,12 @@
     <label for="top25">Top 25</label>
     <input type="radio" name="topCountries" id="top50" on:change={() => filterCountries(50)}>
     <label for="top50">Top 50</label>
+    <label for="customTop" style="margin-left: 20px;">Enter number(1-146):</label>
+    <input type="number" id="customTop" min="1" max="146" on:change={(event) => filterCountries(parseInt(event.target.value))}>
   </div>
+</div>
+<div style="text-align: center; margin-top: 80px; font-family: 'Gill Sans', serif;">
+  <p>Behind the scenes (<a href="writeup.md">writeup</a>)</p>
 </div>
 
 <style>

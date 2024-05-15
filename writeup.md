@@ -24,9 +24,13 @@ We decided to do a visualization using a map from the beginning, but we weren’
 **Samuel**
 - Worked on the data visualization of the globe through working on the legend, the drag effect, implementing the filter and centering the labels. Added some titles as well as other small design tweaks.
 - Added to the writeup with some changes.
-- Part of the brainstorming and visualization process
+- Part of the brainstorming and visualization process.
 
 **Eduardo**
+- Created the framework and baseline using svelte and d3 for the globe visualization.
+- Manipulated the csv file to json to fit our needs.
+- Implemented tooltips and draggability/rotation for our visualization.
+- Part of the brainstorming and visualization process.
 
 ### Challenges
 We mainly faced challenges with turning the data into an acceptable format for our visualization. We had to change it from a csv to a json format in order for it to render properly. Additionally, the actual implementation of the globe was confusing for a few reasons. This is because some tutorials online used tools that were banned such as plotly so it took us awhile to figure out how to make the happiness dataset work with our desired visualization. Another surprisingly difficult aspect was our legend. We couldn't get the "Unhappier" and "Happier" labels to not intersect with our gradient scale for the longest time. The filter was also quite difficult to implement at first but wasn't the most challenging issue out of the bunch. In totality, we probably spent around 12 hours per person to finish this, but if we add it up, maybe it would be around 20 hours. Honestly, the most time was spent in getting the framework for our globe implementation into svelte and finding data that would be valid and work well with our globe. Also just choosing a dataset took awhile but that's more human overthinking and pickiness.
