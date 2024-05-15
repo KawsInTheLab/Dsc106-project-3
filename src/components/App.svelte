@@ -1,12 +1,12 @@
 <script>
   import * as d3 from "d3";
   import { onMount } from "svelte";
-  import worldData from "world.json";
+  import worldData from "../static/world.json";
 
   let happinessData;
 
   onMount(async () => {
-    const response = await fetch("2022.csv");
+    const response = await fetch("../static/2022.csv");
     const csvData = await response.text();
     happinessData = d3.csvParse(csvData, d => {
       return { country: d.Country, happinessScore: +d.HappinessScore, rank: d.RANK };
