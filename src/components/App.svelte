@@ -190,7 +190,7 @@
   </div>
 </div>
 <div style="text-align: center; margin-top: 80px; font-family: 'Gill Sans', serif;">
-  <p>Behind the scenes (<a href="writeup.md">writeup</a>)</p>
+  <p>Behind the scenes (<a href="https://github.com/KawsInTheLab/Dsc106-project-3/blob/main/writeup.md">writeup</a>)</p>
 </div>
 
 <style>
