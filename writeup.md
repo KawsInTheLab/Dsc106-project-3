@@ -17,8 +17,8 @@ We decided to do a visualization using a map from the beginning, but we weren’
 
 ### Division of Labor
 **Niha**
-- suggested the map visualization and obtained the dataset containing the happiness levels of countries.
-- completed the write-up once the visualization had been finalized.
+- Suggested the map visualization and obtained the dataset containing the happiness levels of countries.
+- Completed the write-up once the visualization had been finalized.
 - Part of the brainstorming and visualization process
 
 **Samuel**
