@@ -28,7 +28,6 @@ We decided to do a visualization using a map from the beginning, but we weren’
 - Part of the brainstorming and visualization process
 
 **Eduardo**
--
 
 ### Challenges
 We mainly faced challenges with turning the data into an acceptable format for our visualization. We had to change it from a csv to a json format and also the actual implementation of the globe was confusing. This is because some tutorials online used things that were banned such as plotly so it took us awhile to just settle and lock in on trying to make the happiness dataset work. Another surprisingly difficult aspect was our legend. We couldn't get the "Unhappier" and "Happier" labels to not intersect with our gradient scale for the longest time. The filter was also quite difficult to implement at first but wasn't the most challenging issue out of the bunch. In totality, we probably spent around 12 hours per person to finish this, but if we add it up, maybe it would be around 20 hours. At least that's what it felt like.
